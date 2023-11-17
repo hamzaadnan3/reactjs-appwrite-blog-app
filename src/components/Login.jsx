@@ -8,7 +8,7 @@ import Input from "./Input";
 import Button from "./Button";
 import Logo from "./Logo";
 
-const Login = () => {
+const LoginComponent = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const [error, setError] = useState("");
@@ -20,7 +20,7 @@ const Login = () => {
       const session = await authService.login(data);
       if (session) {
         const userData = await authService.getCurrentUser();
-        if (userData) dispatch(login(userData));
+        if (userData) dispatch(login({ userData }));
         navigate("/");
       }
     } catch (error) {
@@ -84,4 +84,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginComponent;

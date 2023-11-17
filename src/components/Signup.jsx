@@ -8,7 +8,7 @@ import { login } from "../store/authSlice";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
-const Signup = () => {
+const SignupComponent = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const [error, setError] = useState("");
@@ -91,4 +91,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignupComponent;

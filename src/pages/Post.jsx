@@ -6,11 +6,13 @@ import Container from "../components/Container/Container";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 
-const Post = () => {
-  const userData = useSelector((state) => state.auth.userData);
+export default function Post() {
   const [post, setPost] = useState(null);
   const { slug } = useParams();
   const navigate = useNavigate();
+
+  const userData = useSelector((state) => state.auth.userData);
+
   const isAuthor = post && userData ? post.userId === userData.$id : false;
 
   useEffect(() => {
@@ -30,8 +32,6 @@ const Post = () => {
       }
     });
   };
-  console.log("Featured Image ID:", post.featuredImage);
-  console.log("Preview URL:", service.previewFile(post.featuredImage));
 
   return post ? (
     <div className="py-8">
@@ -63,6 +63,4 @@ const Post = () => {
       </Container>
     </div>
   ) : null;
-};
-
-export default Post;
+}

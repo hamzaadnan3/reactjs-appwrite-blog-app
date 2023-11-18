@@ -29,8 +29,7 @@ export default function PostForm({ post }) {
         ? await service.uploadFile(data.image[0])
         : null;
 
-
-        console.log(file);
+      console.log(file);
       if (file) {
         service.deleteFile(post.featuredImage);
       }
@@ -121,7 +120,7 @@ export default function PostForm({ post }) {
         {post && (
           <div className="w-full mb-4">
             <img
-              src={appwriteService.getFilePreview(post.featuredImage)}
+              src={service.previewFile(post.featuredImage)}
               alt={post.title}
               className="rounded-lg"
             />

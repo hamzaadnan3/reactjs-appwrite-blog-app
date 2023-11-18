@@ -8,7 +8,14 @@ const Card = ({ $id, title, featuredImage }) => {
       <div className="w-full bg-gray-100 rounded-xl p-4">
         <div className="w-full justify-center mb-4">
           <img
-            src={service.previewFile(featuredImage)}
+            src={(() => {
+              try {
+                return service.previewFile(featuredImage);
+              } catch (error) {
+                console.error("Error fetching image:", error);
+                // You can return a placeholder image or handle the error in another way
+              }
+            })()}
             alt={title}
             className="rounded-xl"
           />

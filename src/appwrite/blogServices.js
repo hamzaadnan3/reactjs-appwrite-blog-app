@@ -69,14 +69,16 @@ export class BlogService {
 
   async getPost(slug) {
     try {
-      return await this.databases.getDocument(
+      const document = await this.databases.getDocument(
         config.appwriteDatabaseId,
         config.appwriteCollectionId,
         slug
       );
+
+      return document; // Assuming document is the post object
     } catch (error) {
-      console.log("Error creating post: getPost service", error);
-      return false;
+      console.error("Error fetching post:", error);
+      throw error; // Throw the error so it can be caught in the calling code
     }
   }
 
@@ -117,9 +119,9 @@ export class BlogService {
     }
   }
 
-  async previewFile(fileId) {
+  previewFile(fileId) {
     try {
-      return await this.storage.createFile(config.appwriteBucketId, fileId);
+      return this.storage.getFilePreview(config.appwriteBucketId, fileId);
     } catch (error) {
       console.log("Error creating post: previewFile service", error);
       return false;
